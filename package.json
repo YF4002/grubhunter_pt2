@@ -1,0 +1,31 @@
+{
+  "name": "grubhunter-application",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "LIGHTNING_CSS_FORCE_WASM=1 next dev",
+    "build": "LIGHTNING_CSS_FORCE_WASM=1 next build",
+    "start": "LIGHTNING_CSS_FORCE_WASM=1 next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@apollo/server": "^5.5.0",
+    "@as-integrations/next": "^4.1.0",
+    "graphql": "^16.13.2",
+    "graphql-tag": "^2.12.6",
+    "mongoose": "^9.3.0",
+    "next": "16.1.6",
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.6",
+    "tailwindcss": "^4.2.1",
+    "typescript": "^5"
+  }
+}
