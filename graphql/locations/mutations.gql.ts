@@ -1,11 +1,31 @@
 import { updateWishlist } from "../../mongoose/locations/services";
+import { authGuard } from "@/middleware/auth-guard";
+import { JWT } from "next-auth/jwt";
+
+interface MutationParams {
+  user_id: string;
+  location_id: string;
+}
+
+interface ResolverContext {
+  token: JWT | null;
+}
 
 export const locationMutationResolvers = {
-  addWishlist: async (_: unknown, { user_id, location_id }: { user_id: string, location_id: string }) => {
-    return await updateWishlist(user_id, location_id, true);
+  addWishlist: async (_: unknown, params: MutationParams, context: ResolverContext) => {
+    const guard = authGuard(params, context);
+    
+    if (guard !== true) return guard;
+    
+    return await updateWishlist(params.user_id, params.location_id, true);
   },
-  removeWishlist: async (_: unknown, { user_id, location_id }: { user_id: string, location_id: string }) => {
-    return await updateWishlist(user_id, location_id, false);
+
+  removeWishlist: async (_: unknown, params: MutationParams, context: ResolverContext) => {
+    const guard = authGuard(params, context);
+    
+    if (guard !== true) return guard;
+    
+    return await updateWishlist(params.user_id, params.location_id, false);
   },
 };
 

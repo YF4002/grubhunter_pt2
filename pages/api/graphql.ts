@@ -4,6 +4,8 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { typeDefs } from "../../graphql/schema";
 import { resolvers } from "../../graphql/resolvers";
 import dbConnect from "@/middleware/mongoose";
+import { getToken } from "next-auth/jwt";
+
 
 const server = new ApolloServer({
   typeDefs,
@@ -11,9 +13,10 @@ const server = new ApolloServer({
 });
 
 const handler = startServerAndCreateNextHandler(server, {
-  context: async () => ({
-    token: {}, // Placeholder for future auth
-  }),
+  context: async (req) => {
+    const token = await getToken({ req });
+  return { token };
+},
 });
 
 export default async function graphqlHandler(req: NextApiRequest, res: NextApiResponse) {
