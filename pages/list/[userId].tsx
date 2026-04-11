@@ -1,9 +1,11 @@
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import dbConnect from '@/middleware/mongoose';
 import { findWishlistForUser } from '@/mongoose/locations/services';
 import LocationsList from '@/components/locations-list';
+import Button from '@/components/button';
 import { LocationType } from '@/mongoose/locations/schema';
 
 interface Props {

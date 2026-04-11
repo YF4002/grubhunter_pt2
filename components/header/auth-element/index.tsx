@@ -12,6 +12,9 @@ const AuthElement = () => {
         <>
           <span className={styles.name}>Hi, {session.user?.name}</span>
           <nav className={styles.root}>
+            <Link href="/">
+              <Button variant="default">Home</Button>
+            </Link>
             <Link href={`/list/${session.user?.fdlst_private_userId}`}>
               <Button variant="default">Your Wish List</Button>
             </Link>

@@ -73,7 +73,7 @@ export async function findLocationsByIds(ids: string[]) {
 
 export async function findWishlistForUser({ userId }: LocationWishlistFilter) {
   await dbConnect();
-  return Location.find({ wishlistUsers: userId });
+  return Location.find({ on_wishlist: userId });
 }
 
 /**
@@ -92,13 +92,13 @@ export async function updateWishlist(
   if (add) {
     return Location.findOneAndUpdate(
       { location_id: locationId },
-      { $addToSet: { wishlistUsers: userId } },
+      { $addToSet: { on_wishlist: userId } },
       { new: true }
     );
   } else {
     return Location.findOneAndUpdate(
       { location_id: locationId },
-      { $pull: { wishlistUsers: userId } },
+      { $pull: { on_wishlist: userId } },
       { new: true }
     );
   }
